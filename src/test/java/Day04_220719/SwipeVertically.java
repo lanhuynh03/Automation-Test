@@ -1,6 +1,5 @@
-package Day03_220714;
+package Day04_220719;
 
-import Day04_220719.SwipeUtil;
 import driver.DriverFactory;
 import driver.Platforms;
 import io.appium.java_client.AppiumDriver;
@@ -12,7 +11,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SwipeHorizontally {
+public class SwipeVertically {
     public static void main(String[] args) {
         // Get appium driver
         AppiumDriver<MobileElement> appiumDriver = DriverFactory.getDriver(Platforms.android);
@@ -26,9 +25,33 @@ public class SwipeHorizontally {
             WebDriverWait wait = new WebDriverWait(appiumDriver, 10L);
             wait.until(ExpectedConditions.visibilityOfElementLocated(MobileBy.xpath("//android.widget.TextView[contains(@text, \"Swipe horizontal\")]")));
 
-            //Swipe Horizontally
-            SwipeUtil swipeUtil = new SwipeUtil(appiumDriver);
-            swipeUtil.swipeFromRightToLeft(5);
+            // Get Mobile window size
+            Dimension windowSize = appiumDriver.manage().window().getSize();
+            int screenHeight = windowSize.getHeight();
+            int screenWidth = windowSize.getWidth();
+
+            // Calculate touch points
+            int yStartPoint = 70 * screenHeight / 100;
+            int yEndPoint = 10 * screenHeight / 100;
+
+            int xStartPoint = 70 * screenWidth / 100;
+            int xEndPoint = xStartPoint;
+
+            // Convert coordinate -> PointOption
+            PointOption startPoint = new PointOption().withCoordinates(xStartPoint, yStartPoint);
+            PointOption endPoint = new PointOption().withCoordinates(xEndPoint, yEndPoint);
+
+            // Using TouchAction to swipe
+            TouchAction touchAction = new TouchAction(appiumDriver);
+
+            // Swipe from right to left 3 times
+            for (int i=0; i<3; i++) {
+                touchAction
+                        .longPress(startPoint)
+                        .moveTo(endPoint)
+                        .release()
+                        .perform();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

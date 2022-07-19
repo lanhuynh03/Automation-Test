@@ -21,9 +21,6 @@ public class LaunchApp {
             desiredCaps.setCapability("udid", "emulator-5554");
             desiredCaps.setCapability("appPackage", "com.wdiodemoapp");
             desiredCaps.setCapability("appActivity", "com.wdiodemoapp.MainActivity");
-//            desiredCaps.setCapability("udid", "8UEDU17C08002008");
-//            desiredCaps.setCapability("appPackage", "com.wdiodemoapp");
-//            desiredCaps.setCapability("appActivity", "com.wdiodemoapp.MainActivity");
 
             // Init appium session
             URL appiumServer = new URL("http://localhost:4723/wd/hub");
