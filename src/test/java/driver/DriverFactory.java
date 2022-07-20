@@ -1,5 +1,7 @@
 package driver;
 
+import Day04_220719.HalomeLite;
+import Day04_220719.HalomeSB;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -27,10 +29,20 @@ public class DriverFactory implements MobileCapabilityTypeEx{
             desiredCaps.setCapability(PLATFORM_NAME, "Android");
             desiredCaps.setCapability(AUTOMATION_NAME, "uiautomator2");
             desiredCaps.setCapability(UDID, "emulator-5554");
-            desiredCaps.setCapability(APP_PACKAGE, "com.wdiodemoapp");
-            desiredCaps.setCapability(APP_ACTIVITY, "com.wdiodemoapp.MainActivity");
-//            desiredCaps.setCapability("appPackage", "com.hahalolo.android.halome");
-//            desiredCaps.setCapability("appActivity", "com.halo.presentation.startapp.start.StartAct");
+
+//            wdio demo app
+//            desiredCaps.setCapability(APP_PACKAGE, "com.wdiodemoapp");
+//            desiredCaps.setCapability(APP_ACTIVITY, "com.wdiodemoapp.MainActivity");
+
+
+//            HalomeSB
+//            desiredCaps.setCapability(APP_PACKAGE, "com.hahalolo.android.halome");
+//            desiredCaps.setCapability(APP_ACTIVITY, "com.halo.presentation.startapp.start.StartAct");
+
+
+//            HalomeLite
+            desiredCaps.setCapability(APP_PACKAGE, "com.halome.android.lite");
+            desiredCaps.setCapability(APP_ACTIVITY, "com.halome.android.lite.view.main.login.activity.SelectLoginTypeActivity");
 
             // Init appium session
             URL appiumServer = new URL("http://localhost:4723/wd/hub");
